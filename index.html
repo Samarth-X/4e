@@ -5,222 +5,182 @@
   <title>Weekly Excellent Classes</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; }
-    html,body { height: 100%; }body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }body {
   background: linear-gradient(135deg, #89f7fe, #66a6ff);
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  color: #333;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Centered content area that grows, footer sits after it naturally */
-.container {
-  width: 100%;
-  max-width: 1000px;
-  margin: 40px auto 24px;
-  padding: 0 20px;
-  flex: 1 0 auto; /* allow to grow so footer goes to bottom */
-  display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 30px;
+  position: relative;
 }
 
 h1 {
   color: #fff;
-  font-size: 2.25rem;
-  margin-bottom: 24px;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
   text-align: center;
-  text-shadow: 0 4px 10px rgba(0,0,0,0.18);
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .section-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
   width: 100%;
+  max-width: 1000px;
 }
 
-/* card style (default) */
 .section {
   background: #fff;
-  border-radius: 18px;
-  padding: 20px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  display: flex;
-  flex-direction: column;
+  border-radius: 20px;
+  padding: 25px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-.section:hover { transform: translateY(-6px); box-shadow: 0 14px 30px rgba(0,0,0,0.12); }
-
-/* Plain section: removes outer box (use this for 2nd section) */
-.section.plain {
-  background: transparent; /* no white box */
-  box-shadow: none;
-  border-radius: 0;
-  padding: 6px 4px; /* small padding so inner items still have breathing room */
+.section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .section h2 {
-  font-size: 1.25rem;
-  margin: 6px 0 14px;
-  color: #fff;
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+  border-left: 5px solid #66a6ff;
   padding-left: 10px;
-  border-left: 5px solid rgba(255,255,255,0.5);
-  text-shadow: 0 2px 5px rgba(0,0,0,0.15);
 }
 
-/* If the section is plain, make the heading darker so it's readable on gradient */
-.section.plain h2 { color: #fff; border-left-color: rgba(255,255,255,0.9); }
-
-.class-list { display: flex; flex-direction: column; gap: 12px; }
+.class-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
 
 .class-item {
   background: #f3f6fa;
   border-radius: 12px;
-  padding: 12px 14px;
+  padding: 15px;
   text-align: center;
   font-weight: 600;
   color: #333;
   cursor: pointer;
-  user-select: none;
-  transition: background 0.2s, transform 0.12s;
-  outline: none;
+  transition: background 0.3s, transform 0.2s;
 }
 
-.class-item:hover, .class-item:focus { transform: scale(1.02); }
-.class-item.active { background: #66a6ff; color: #fff; }
-
-/* If the parent section is plain, keep class items readable (slightly transparent) */
-.section.plain .class-item { background: rgba(255,255,255,0.12); color: #fff; }
-.section.plain .class-item.active { background: rgba(255,255,255,0.25); color: #fff; }
+.class-item:hover {
+  background: #66a6ff;
+  color: #fff;
+  transform: scale(1.03);
+}
 
 .teacher {
-  margin-top: 8px;
-  font-size: 0.95rem;
+  margin-top: 10px;
+  font-size: 1rem;
   color: #555;
   font-weight: 500;
   display: none;
-  animation: fadeIn 0.35s ease forwards;
-  text-align: center;
+  animation: fadeIn 0.4s ease forwards;
 }
 
-/* When teacher appears inside a plain section, make text lighter */
-.section.plain .teacher { color: rgba(255,255,255,0.95); }
-
-@keyframes fadeIn { from {opacity:0; transform: translateY(6px);} to {opacity:1; transform: translateY(0);} }
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(10px);} 
+  to {opacity: 1; transform: translateY(0);} 
+}
 
 footer {
-  flex-shrink: 0; /* don't collapse */
-  margin: 12px auto 28px;
-  color: #fff;
-  font-weight: 600;
-  letter-spacing: 0.6px;
-  font-size: 0.95rem;
-  background: rgba(255,255,255,0.06);
-  padding: 10px 16px;
-  border-radius: 12px;
+  position: absolute;
+  bottom: 15px;
   text-align: center;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  backdrop-filter: blur(6px);
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-/* Responsive tweaks */
 @media (max-width: 600px) {
-  h1 { font-size: 1.6rem; }
-  .section { padding: 14px; }
-  .class-item { padding: 10px; }
-  footer { font-size: 0.85rem; padding: 8px 12px; }
+  h1 { font-size: 2rem; }
+  .section { padding: 20px; }
+  footer { font-size: 0.9rem; }
 }
 
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Weekly Excellent Classes 🌟</h1><div class="section-container">
+  <h1>Weekly Excellent Classes 🌟</h1>
+  <div class="section-container">
+    <!-- Section 1 -->
+    <div class="section">
+      <h2>1st Section</h2>
+      <div class="class-list">
+        <div class="class-item" onclick="toggleTeacher(this, 'Mr. Sharma')">Class 2nd C</div>
+        <div class="teacher"></div><div class="class-item" onclick="toggleTeacher(this, 'Mrs. Gupta')">Class B</div>
+    <div class="teacher"></div>
+  <div class="class-list">
+    <div class="class-item" onclick="toggleTeacher(this, 'Mr. SAMARTH BARHATE')">Class A</div>
+    <div class="teacher"></div>
 
-  <!-- Section 1: default card look -->
-  <section class="section" aria-label="First Section">
-    <h2>1st Section</h2>
-    <div class="class-list" role="list">
+    <div class="class-item" onclick="toggleTeacher(this, 'Mrs. Gupta')">Class B</div>
+    <div class="teacher"></div> 
+  <div class="class-list">
+    <div class="class-item" onclick="toggleTeacher(this, 'Mr. Sharma')">Class A</div>
+    <div class="teacher"></div>
 
-      <div class="class-item" role="button" tabindex="0" data-teacher="Mr. Sharma">Class 2nd C</div>
-      <div class="teacher" aria-hidden="true"></div>
+    <div class="class-item" onclick="toggleTeacher(this, 'Mrs. Gupta')">Class B</div>
+    <div class="teacher"></div>
+  </div>
+</div>
 
-      <div class="class-item" role="button" tabindex="0" data-teacher="Mrs. Gupta">Class B</div>
-      <div class="teacher" aria-hidden="true"></div>
+<!-- Section 2 -->
+<div class="section">
+  <h2>2nd Section</h2>
+  <div class="class-list">
+    <div class="class-item" onclick="toggleTeacher(this, 'Mrs. Jaclin ')">Class C</div>
+    <div class="teacher"></div>
 
-      <div class="class-item" role="button" tabindex="0" data-teacher="Mr. SAMARTH BARHATE">Class A</div>
-      <div class="teacher" aria-hidden="true"></div>
+    <div class="class-item" onclick="toggleTeacher(this, 'Ms. Patel')">Class D</div>
+    <div class="teacher"></div>
+      <div class="class-item" onclick="toggleTeacher(this, 'Mr. Rao')">Class C</div>
+    <div class="teacher"></div>
 
-      <div class="class-item" role="button" tabindex="0" data-teacher="Mrs. Gupta">Class B</div>
-      <div class="teacher" aria-hidden="true"></div>
+    <div class="class-item" onclick="toggleTeacher(this, 'Ms. Patel')">Class D</div>
+    <div class="teacher"></div>
+      <div class="class-item" onclick="toggleTeacher(this, 'Mr. Rao')">Class C</div>
+    <div class="teacher"></div>
 
-      <div class="class-item" role="button" tabindex="0" data-teacher="Mr. Sharma">Class A</div>
-      <div class="teacher" aria-hidden="true"></div>
+    <div class="class-item" onclick="toggleTeacher(this, 'Ms. Patel')">Class D</div>
+    <div class="teacher"></div>
+      <div class="class-item" onclick="toggleTeacher(this, 'Mr. Rao')">Class C</div>
+    <div class="teacher"></div>
 
-    </div>
-  </section>
+    <div class="class-item" onclick="toggleTeacher(this, 'Ms. Patel')">Class D</div>
+    <div class="teacher"></div>
+  </div>
+</div>
 
-  <!-- Section 2: plain (no outer box). Use class `plain` to remove outer rounded card. -->
-  <section class="section plain" aria-label="Second Section">
-    <h2>2nd Section</h2>
-    <div class="class-list" role="list">
-
-      <div class="class-item" role="button" tabindex="0" data-teacher="Mrs. Jaclin">Class C</div>
-      <div class="teacher" aria-hidden="true"></div>
-
-      <div class="class-item" role="button" tabindex="0" data-teacher="Ms. Patel">Class D</div>
-      <div class="teacher" aria-hidden="true"></div>
-
-      <div class="class-item" role="button" tabindex="0" data-teacher="Mr. Rao">Class C</div>
-      <div class="teacher" aria-hidden="true"></div>
-
-      <div class="class-item" role="button" tabindex="0" data-teacher="Ms. Patel">Class D</div>
-      <div class="teacher" aria-hidden="true"></div>
-
-    </div>
-  </section>
-
-</div> <!-- .section-container -->
-
-  </div> <!-- .container -->  <footer id="site-footer">© SAMARTH <span id="year"></span></footer>  <script>
-    // set footer year dynamically
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // toggle teacher display and keyboard support
-    function hideAllTeachers() {
-      document.querySelectorAll('.teacher').forEach(t => { t.style.display = 'none'; t.textContent = ''; });
-      document.querySelectorAll('.class-item').forEach(ci => ci.classList.remove('active'));
-    }
-
-    function showTeacherFor(element) {
-      hideAllTeachers();
-      const teacherName = element.dataset.teacher || 'TBA';
+  </div>  <footer>© SAMARTH 2025</footer>  <script>
+    function toggleTeacher(element, teacherName) {
       const teacherDiv = element.nextElementSibling;
-      if (teacherDiv && teacherDiv.classList.contains('teacher')) {
+      if (teacherDiv.style.display === 'block') {
+        teacherDiv.style.display = 'none';
+        teacherDiv.textContent = '';
+      } else {
+        const allTeachers = document.querySelectorAll('.teacher');
+        allTeachers.forEach(t => { t.style.display = 'none'; t.textContent = ''; });
         teacherDiv.textContent = 'Class Teacher: ' + teacherName;
         teacherDiv.style.display = 'block';
-        element.classList.add('active');
       }
     }
-
-    // click and keyboard handlers
-    document.querySelectorAll('.class-item').forEach(item => {
-      item.addEventListener('click', () => showTeacherFor(item));
-      item.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showTeacherFor(item); }
-      });
-    });
-
-    // close teacher if user clicks outside
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.section')) hideAllTeachers();
-    });
   </script></body>
-</html>
+  </html>
