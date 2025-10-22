@@ -5,40 +5,8 @@
   <title>Weekly Excellent Classes</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }body {
-  background: linear-gradient(135deg, #89f7fe, #66a6ff);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 30px;
-  position: relative;
-}
-
-h1 {
-  color: #fff;
-  font-size: 2.5rem;
-  margin-bottom: 30px;
-  text-align: center;
-  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.section-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: center;
-  width: 100%;
-  max-width: 1000px;
-}
-
-.section {
+  /* Make the 2nd section look exactly like the 1st */
+.section-container > .section:nth-of-type(2) {
   background: #fff;
   border-radius: 20px;
   padding: 25px;
@@ -48,12 +16,14 @@ h1 {
   transition: all 0.3s ease;
 }
 
-.section:hover {
+/* Hover for 2nd section */
+.section-container > .section:nth-of-type(2):hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-.section h2 {
+/* Heading style inside the 2nd section */
+.section-container > .section:nth-of-type(2) h2 {
   font-size: 1.5rem;
   color: #333;
   margin-bottom: 20px;
@@ -61,60 +31,15 @@ h1 {
   padding-left: 10px;
 }
 
-.class-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.class-item {
-  background: #f3f6fa;
-  border-radius: 12px;
-  padding: 15px;
-  text-align: center;
-  font-weight: 600;
-  color: #333;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-}
-
-.class-item:hover {
-  background: #66a6ff;
-  color: #fff;
-  transform: scale(1.03);
-}
-
-.teacher {
-  margin-top: 10px;
-  font-size: 1rem;
-  color: #555;
-  font-weight: 500;
-  display: none;
-  animation: fadeIn 0.4s ease forwards;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(10px);} 
-  to {opacity: 1; transform: translateY(0);} 
-}
-
-footer {
-  position: absolute;
-  bottom: 15px;
-  text-align: center;
-  color: white;
-  font-weight: 600;
-  letter-spacing: 1px;
-  font-size: 1rem;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-@media (max-width: 600px) {
-  h1 { font-size: 2rem; }
-  .section { padding: 20px; }
-  footer { font-size: 0.9rem; }
-}
-
+/* Ensure nested lists/items inside 2nd section keep same layout */
+.section-container > .section:nth-of-type(2) .class-list,
+.section-container > .section:nth-of-type(2) .class-item,
+.section-container > .section:nth-of-type(2) .teacher {
+  /* inherit existing behaviors (no change needed, but explicit here to avoid overrides) */
+  display: inherit;
+  font-weight: inherit;
+  text-align: inherit;
+    }
   </style>
 </head>
 <body>
