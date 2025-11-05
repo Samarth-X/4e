@@ -21,6 +21,7 @@
       min-height: 100vh;
       padding: 30px;
       position: relative;
+      -webkit-tap-highlight-color: transparent;
     }
 
     h1 {
@@ -80,13 +81,12 @@
       cursor: pointer;
       transition: background 0.3s, transform 0.2s;
       outline: none;
-      -webkit-tap-highlight-color: transparent; /* Removes default blue highlight */
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .class-item:hover,
     .class-item.active {
-      background: #66a6ff;
-      color: #fff;
+      background: #66a6ff !important;
+      color: #fff !important;
       transform: scale(1.03);
     }
 
@@ -157,9 +157,9 @@
         <div class="class-item">UKG</div>
         <div class="class-item">LKG/UKG</div>
         <div class="class-item">UKG</div>
+        <div class="class-item">LKG/UKG</div>
+        <div class="class-item">LKG/UKG</div>
         <div class="class-item">UKG</div>
-        <div class="class-item">LKG/UKG</div>
-        <div class="class-item">LKG/UKG</div>
         <div class="class-item">LKG/UKG</div>
         <div class="class-item">LKG</div>
         <div class="class-item">UKG</div>
@@ -175,23 +175,24 @@
     function toggleTeacher(element, teacherName) {
       const teacherDiv = element.nextElementSibling;
       const allItems = document.querySelectorAll('.class-item');
-      
-      // If the same class is clicked again, remove highlight and teacher name
+
+      // If already active, deactivate
       if (element.classList.contains('active')) {
         element.classList.remove('active');
         if (teacherDiv) {
           teacherDiv.style.display = 'none';
           teacherDiv.textContent = '';
         }
+        document.activeElement.blur();
         return;
       }
 
-      // Reset all items and teacher divs
+      // Reset all
       allItems.forEach(item => item.classList.remove('active'));
       const allTeachers = document.querySelectorAll('.teacher');
       allTeachers.forEach(t => { t.style.display = 'none'; t.textContent = ''; });
 
-      // Activate clicked class
+      // Activate selected
       element.classList.add('active');
       if (teacherDiv) {
         teacherDiv.textContent = 'Class Teacher: ' + teacherName;
