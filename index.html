@@ -80,7 +80,7 @@
       cursor: pointer;
       transition: background 0.3s, transform 0.2s;
       outline: none;
-      -webkit-tap-highlight-color: transparent; /* Removes mobile blue highlight */
+      -webkit-tap-highlight-color: transparent; /* Removes default blue highlight */
     }
 
     .class-item:hover,
@@ -156,15 +156,15 @@
         <div class="class-item">LKG</div>
         <div class="class-item">UKG</div>
         <div class="class-item">LKG/UKG</div>
-        <div class="class-item">LKG/UKG</div>
-        <div class="class-item">LKG/UKG</div>
-        <div class="class-item">LKG/UKG</div>
-        <div class="class-item">LKG/UKG</div>
-        <div class="class-item">LKG/UKG</div>
-        <div class="class-item">LKG</div>
-        <div class="class-item">LKG</div>
-        <div class="class-item">LKG/UKG</div>
         <div class="class-item">UKG</div>
+        <div class="class-item">UKG</div>
+        <div class="class-item">LKG/UKG</div>
+        <div class="class-item">LKG/UKG</div>
+        <div class="class-item">LKG/UKG</div>
+        <div class="class-item">LKG</div>
+        <div class="class-item">UKG</div>
+        <div class="class-item">UKG</div>
+        <div class="class-item">LKG/UKG</div>
       </div>
     </div>
   </div>
@@ -175,20 +175,27 @@
     function toggleTeacher(element, teacherName) {
       const teacherDiv = element.nextElementSibling;
       const allItems = document.querySelectorAll('.class-item');
+      
+      // If the same class is clicked again, remove highlight and teacher name
+      if (element.classList.contains('active')) {
+        element.classList.remove('active');
+        if (teacherDiv) {
+          teacherDiv.style.display = 'none';
+          teacherDiv.textContent = '';
+        }
+        return;
+      }
 
-      // Remove blue effect from all items
+      // Reset all items and teacher divs
       allItems.forEach(item => item.classList.remove('active'));
+      const allTeachers = document.querySelectorAll('.teacher');
+      allTeachers.forEach(t => { t.style.display = 'none'; t.textContent = ''; });
 
-      if (!teacherDiv) return;
-      if (teacherDiv.style.display === 'block') {
-        teacherDiv.style.display = 'none';
-        teacherDiv.textContent = '';
-      } else {
-        const allTeachers = document.querySelectorAll('.teacher');
-        allTeachers.forEach(t => { t.style.display = 'none'; t.textContent = ''; });
+      // Activate clicked class
+      element.classList.add('active');
+      if (teacherDiv) {
         teacherDiv.textContent = 'Class Teacher: ' + teacherName;
         teacherDiv.style.display = 'block';
-        element.classList.add('active'); // Add blue effect only to the active one
       }
     }
   </script>
