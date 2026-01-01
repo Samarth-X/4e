@@ -75,13 +75,15 @@
       background: #f3f6fa;
       border-radius: 12px;
       padding: 15px;
-      text-align: center;
       font-weight: 600;
       color: #333;
       cursor: pointer;
       transition: background 0.3s, transform 0.2s;
       outline: none;
       -webkit-tap-highlight-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .class-item.active {
@@ -129,12 +131,13 @@
     <div class="section">
       <h2>1st Section</h2>
       <div class="class-list">
-       <div class="class-item" onclick="toggleTeacher(this,'Jacking MA\'AM')">
-  <span>Class 2nd C</span>
+
+<div class="class-item" onclick="toggleTeacher(this,'Jacking MA\'AM')">
+  <span>Class 2nd C</span><span class="medal">🥉</span>
 </div><div class="teacher"></div>
 
 <div class="class-item" onclick="toggleTeacher(this,'Palwe MA\'AM')">
-  <span>Class 2nd B</span>
+  <span>Class 2nd B</span><span class="medal">🥈</span>
 </div><div class="teacher"></div>
 
 <div class="class-item" onclick="toggleTeacher(this,'Kakde MA\'AM')">
@@ -142,11 +145,11 @@
 </div><div class="teacher"></div>
 
 <div class="class-item" onclick="toggleTeacher(this,'MA\'AM')">
-  <span>Class 1st A</span>
+  <span>Class 1st A</span><span class="medal">🥉</span>
 </div><div class="teacher"></div>
 
 <div class="class-item" onclick="toggleTeacher(this,'Dahatonde MA\'AM')">
-  <span>Class 7th B</span>
+  <span>Class 7th B</span><span class="medal">🥇</span>
 </div><div class="teacher"></div>
 
 <div class="class-item" onclick="toggleTeacher(this,'Kardile MA\'AM')">
@@ -154,7 +157,7 @@
 </div><div class="teacher"></div>
 
 <div class="class-item" onclick="toggleTeacher(this,'Khandagle MA\'AM')">
-  <span>Class 6th B</span>
+  <span>Class 6th B</span><span class="medal">🥉</span>
 </div><div class="teacher"></div>
 
 <div class="class-item" onclick="toggleTeacher(this,'Wagh MA\'AM')">
@@ -162,7 +165,7 @@
 </div><div class="teacher"></div>
 
 <div class="class-item" onclick="toggleTeacher(this,'Nawale MA\'AM')">
-  <span>Class 1st A</span>
+  <span>Class 1st A</span><span class="medal">🥉</span>
 </div><div class="teacher"></div>
 
 <div class="class-item" onclick="toggleTeacher(this,'Nemane Sir')">
@@ -178,7 +181,7 @@
 </div><div class="teacher"></div>
 
 <div class="class-item" onclick="toggleTeacher(this,'Ashwini MA\'AM')">
-  <span>Class 6th B</span>
+  <span>Class 6th B</span><span class="medal">🥉</span>
 </div><div class="teacher"></div>
 
 <div class="class-item" onclick="toggleTeacher(this,'Jare MA\'AM')">
@@ -198,15 +201,15 @@
 </div><div class="teacher"></div>
 
 <div class="class-item" onclick="toggleTeacher(this,'Dahatonde MA\'AM')">
-  <span>Class 7th B</span>
+  <span>Class 7th B</span><span class="medal">🥇</span>
 </div><div class="teacher"></div>
 
 <div class="class-item" onclick="toggleTeacher(this,'Jacklin MA\'AM')">
-  <span>Class 2nd C</span>
+  <span>Class 2nd C</span><span class="medal">🥉</span>
 </div><div class="teacher"></div>
 
 <div class="class-item" onclick="toggleTeacher(this,'Palwe Ma’am')">
-  <span>Class 2nd B</span>
+  <span>Class 2nd B</span><span class="medal">🥈</span>
 </div>
 <div class="teacher"></div>
 
@@ -226,7 +229,7 @@
 <div class="teacher"></div>
 
 <div class="class-item" onclick="toggleTeacher(this,'Dahatonde Ma’am')">
-  <span>Class 7th B</span>
+  <span>Class 7th B</span><span class="medal">🥇</span>
 </div>
 <div class="teacher"></div>
 
@@ -252,6 +255,7 @@
         <div class="class-item">LKG/UKG</div>
       </div>
     </div>
+    </div>
   </div>
 
   <footer>© SAMARTH 2025</footer>
@@ -261,7 +265,6 @@
       const teacherDiv = element.nextElementSibling;
       const allItems = document.querySelectorAll('.class-item');
 
-      // If already active, deactivate
       if (element.classList.contains('active')) {
         element.classList.remove('active');
         if (teacherDiv) {
@@ -272,12 +275,10 @@
         return;
       }
 
-      // Reset all
       allItems.forEach(item => item.classList.remove('active'));
       const allTeachers = document.querySelectorAll('.teacher');
       allTeachers.forEach(t => { t.style.display = 'none'; t.textContent = ''; });
 
-      // Activate selected
       element.classList.add('active');
       if (teacherDiv) {
         teacherDiv.textContent = 'Class Teacher: ' + teacherName;
